@@ -33,10 +33,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Close mobile menu when clicking a link
     navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            navToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = '';
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+
+            // Only handle anchor links
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+
+                // Close menu first
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+
+                // Then scroll after menu closes
+                setTimeout(() => {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const headerOffset = 100;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 300);
+            } else {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
     });
 
@@ -105,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
     `);
 
     // ==========================================
-    // Contact Form Handling
+    // Contact Form Handling (Netlify Forms)
     // ==========================================
     const contactForm = document.getElementById('contactForm');
 
@@ -123,22 +150,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Simulate form submission (replace with actual backend)
+            // Submit to Netlify
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
             submitBtn.textContent = 'Wird gesendet...';
             submitBtn.disabled = true;
 
-            // Simulate API call
-            setTimeout(() => {
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(response => {
+                if (response.ok) {
+                    showFormMessage(
+                        'Vielen Dank für Ihre Nachricht! Wir melden uns schnellstmöglich bei Ihnen.',
+                        'success'
+                    );
+                    contactForm.reset();
+                } else {
+                    throw new Error('Fehler beim Senden');
+                }
+            })
+            .catch(error => {
                 showFormMessage(
-                    'Vielen Dank für Ihre Nachricht! Wir melden uns schnellstmöglich bei Ihnen.',
-                    'success'
+                    'Es gab einen Fehler beim Senden. Bitte versuchen Sie es erneut oder rufen Sie uns an.',
+                    'error'
                 );
-                contactForm.reset();
+            })
+            .finally(() => {
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
-            }, 1500);
+            });
         });
     }
 

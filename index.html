@@ -379,7 +379,11 @@
                     </div>
                 </div>
                 <div class="contact-form-container">
-                    <form class="contact-form" id="contactForm">
+                    <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                        <input type="hidden" name="form-name" value="contact">
+                        <p class="hidden" style="display:none;">
+                            <label>Nicht ausfüllen: <input name="bot-field"></label>
+                        </p>
                         <h3>Schreiben Sie uns</h3>
                         <div class="form-group">
                             <label for="name">Name *</label>
