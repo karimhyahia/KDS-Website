@@ -1366,11 +1366,16 @@ ul {
     }
 
     .logo-img {
-        height: 65px;
+        height: 75px;
     }
 
     .navbar.scrolled .logo-img {
-        height: 50px;
+        height: 55px;
+    }
+
+    .nav-container {
+        align-items: center;
+        padding: 8px 0;
     }
 
     /* Hero Mobile */
@@ -1717,11 +1722,11 @@ ul {
     }
 
     .logo-img {
-        height: 55px;
+        height: 65px;
     }
 
     .navbar.scrolled .logo-img {
-        height: 45px;
+        height: 50px;
     }
 
     .hero-content {
@@ -1764,11 +1769,11 @@ ul {
     }
 
     .logo-img {
-        height: 50px;
+        height: 60px;
     }
 
     .navbar.scrolled .logo-img {
-        height: 40px;
+        height: 45px;
     }
 
     .hero-content {
