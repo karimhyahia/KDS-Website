@@ -404,7 +404,7 @@ ul {
 .hero-content {
     position: relative;
     z-index: 1;
-    padding: 140px 20px 100px;
+    padding: 140px 0 100px;
     max-width: 750px;
 }
 
@@ -1385,7 +1385,7 @@ ul {
     }
 
     .hero-content {
-        padding: 140px 20px 120px;
+        padding: 140px 0 120px;
         max-width: 100%;
     }
 
@@ -1730,7 +1730,7 @@ ul {
     }
 
     .hero-content {
-        padding: 130px 16px 100px;
+        padding: 130px 0 100px;
     }
 
     .hero h1 {
@@ -1777,7 +1777,7 @@ ul {
     }
 
     .hero-content {
-        padding: 120px 14px 90px;
+        padding: 120px 0 90px;
     }
 
     .hero h1 {
@@ -1811,7 +1811,7 @@ ul {
     }
 
     .hero-content {
-        padding: 100px 20px 60px;
+        padding: 100px 0 60px;
     }
 
     .hero-scroll {
@@ -1881,8 +1881,8 @@ ul {
     }
 
     .hero-content {
-        padding-left: max(20px, env(safe-area-inset-left));
-        padding-right: max(20px, env(safe-area-inset-right));
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
     }
 
     .footer {
