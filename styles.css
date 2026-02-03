@@ -189,12 +189,30 @@ ul {
 }
 
 .logo-img {
-    height: 45px;
+    height: 70px;
     width: auto;
+    transition: var(--transition-normal);
 }
 
 .navbar.scrolled .logo-img {
-    height: 40px;
+    height: 55px;
+}
+
+/* White logo for transparent navbar, switch to colored on scroll */
+.logo-img.logo-white {
+    display: block;
+}
+
+.logo-img.logo-color {
+    display: none;
+}
+
+.navbar.scrolled .logo-img.logo-white {
+    display: none;
+}
+
+.navbar.scrolled .logo-img.logo-color {
+    display: block;
 }
 
 .logo-icon {
