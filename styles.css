@@ -404,7 +404,7 @@ ul {
 .hero-content {
     position: relative;
     z-index: 1;
-    padding: 140px 0 100px;
+    padding: 140px 20px 100px;
     max-width: 750px;
 }
 
@@ -1805,7 +1805,7 @@ ul {
     }
 
     .hero-content {
-        padding: 100px 0 60px;
+        padding: 100px 20px 60px;
     }
 
     .hero-scroll {
@@ -1875,8 +1875,8 @@ ul {
     }
 
     .hero-content {
-        padding-left: max(0px, env(safe-area-inset-left));
-        padding-right: max(0px, env(safe-area-inset-right));
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
     }
 
     .footer {
