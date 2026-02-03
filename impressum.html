@@ -47,6 +47,40 @@
         .back-link:hover {
             color: var(--primary);
         }
+
+        /* Prevent overflow */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
+        @media (max-width: 768px) {
+            .legal-page {
+                padding: 120px 0 60px;
+            }
+            .legal-content {
+                padding: 0 20px;
+            }
+            .legal-content h1 {
+                font-size: 1.75rem;
+                margin-bottom: 30px;
+            }
+            .legal-content h2 {
+                font-size: 1.15rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .legal-page {
+                padding: 110px 0 50px;
+            }
+            .legal-content {
+                padding: 0 16px;
+            }
+            .legal-content h1 {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
