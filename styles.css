@@ -1944,6 +1944,42 @@ ul {
     background: var(--gray-500);
 }
 
+/* ==========================================
+   Performance Optimizations
+   ========================================== */
+
+/* Content-visibility for below-the-fold sections */
+.services,
+.projects,
+.about,
+.cta-section,
+.contact {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+}
+
+/* Will-change hints for animated elements */
+.navbar {
+    will-change: background-color, backdrop-filter;
+}
+
+.service-card,
+.project-card {
+    will-change: transform;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 /* Print Styles */
 @media print {
     .navbar,
