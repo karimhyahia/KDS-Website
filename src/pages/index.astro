@@ -1,16 +1,32 @@
 ---
-import { useStoryblokApi } from '@storyblok/astro';
+import { useStoryblokApi, getPayload, isEditorRequest } from '@storyblok/astro';
 import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+import StoryblokServerData from '@storyblok/astro/StoryblokServerData.astro';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 
-const storyblokApi = useStoryblokApi();
-const { data } = await storyblokApi.get('cdn/stories/home', {
-  version: import.meta.env.DEV ? 'draft' : 'published',
-  resolve_links: 'url',
-});
-const story = data.story;
+const url = new URL(Astro.request.url);
+const editor = isEditorRequest(url);
+
+let story: any;
+
+const { story: previewStory } = await getPayload({ locals: Astro.locals });
+if (previewStory) {
+  story = previewStory;
+} else {
+  const storyblokApi = useStoryblokApi();
+  const { data } = await storyblokApi.get('cdn/stories/home', {
+    version: editor || import.meta.env.DEV ? 'draft' : 'published',
+    resolve_links: 'url',
+    cv: Date.now(),
+  });
+  story = data.story;
+}
+
+if (!editor) {
+  Astro.response.headers.set('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
+}
 ---
 <Layout
   title={story.content.seo_title || undefined}
@@ -19,4 +35,5 @@ const story = data.story;
   <Navbar />
   <StoryblokComponent blok={story.content} />
   <Footer />
+  <StoryblokServerData story={story} />
 </Layout>

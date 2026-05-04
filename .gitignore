@@ -26,6 +26,9 @@ pnpm-debug.log*
 # Astro
 .astro/
 
+# Vercel build output (built fresh on each deploy)
+.vercel/
+
 # Storyblok CLI logs/reports
 .storyblok/logs/
 .storyblok/reports/

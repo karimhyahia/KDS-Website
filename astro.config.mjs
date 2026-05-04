@@ -1,11 +1,14 @@
 import { defineConfig } from 'astro/config';
 import { storyblok } from '@storyblok/astro';
+import vercel from '@astrojs/vercel';
 import { loadEnv } from 'vite';
 
 const env = loadEnv(process.env.NODE_ENV ?? 'development', process.cwd(), '');
 
 export default defineConfig({
   site: 'https://kds-handwerk.de',
+  output: 'server',
+  adapter: vercel(),
   redirects: {
     '/home': '/',
   },
