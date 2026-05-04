@@ -1,0 +1,16 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+const { blok } = Astro.props;
+const variantClass = blok.variant && blok.variant !== 'default' ? ` ${blok.variant}` : '';
+---
+<div class={`service-card${variantClass}`} {...storyblokEditable(blok)}>
+  {blok.badge && <div class="service-badge">{blok.badge}</div>}
+  <div class="service-icon">{blok.icon}</div>
+  <h3>{blok.title}</h3>
+  <p>{blok.description}</p>
+  {blok.cta_text && (
+    <a href={blok.cta_link?.url || blok.cta_link?.cached_url || 'tel:+4916361975889'} class="service-cta">
+      {blok.cta_text}
+    </a>
+  )}
+</div>

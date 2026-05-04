@@ -1,0 +1,32 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+const { blok } = Astro.props;
+---
+<section class="about" id="ueber-uns" aria-labelledby="about-heading" {...storyblokEditable(blok)}>
+  <div class="container">
+    <div class="about-grid">
+      <article class="about-content">
+        {blok.tag && <span class="section-tag">{blok.tag}</span>}
+        <h2 id="about-heading">{blok.headline}</h2>
+        {blok.lead && <p class="about-lead">{blok.lead}</p>}
+        <div class="about-features">
+          {blok.features?.map((f: any) => <StoryblokComponent blok={f} />)}
+        </div>
+        {blok.cta_text && (
+          <a href={blok.cta_link?.cached_url || blok.cta_link?.url || '#kontakt'} class="btn btn-primary">
+            {blok.cta_text}
+          </a>
+        )}
+      </article>
+      <aside class="about-visual">
+        <div class="visual-card">
+          <div class="visual-icon">{blok.visual_icon || '🏆'}</div>
+          <h3>{blok.visual_title}</h3>
+          <blockquote>{blok.visual_quote}</blockquote>
+          <p class="visual-author">{blok.visual_author}</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

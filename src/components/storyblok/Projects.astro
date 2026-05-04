@@ -1,0 +1,17 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+const { blok } = Astro.props;
+---
+<section class="projects" id="projekte" aria-labelledby="projects-heading" {...storyblokEditable(blok)}>
+  <div class="container">
+    <header class="section-header">
+      {blok.tag && <span class="section-tag">{blok.tag}</span>}
+      <h2 id="projects-heading">{blok.headline}</h2>
+      {blok.subline && <p>{blok.subline}</p>}
+    </header>
+    <div class="projects-grid">
+      {blok.cards?.map((card: any) => <StoryblokComponent blok={card} />)}
+    </div>
+  </div>
+</section>

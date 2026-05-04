@@ -1,0 +1,38 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+const { blok } = Astro.props;
+const trust = blok.trust_items || [];
+---
+<header class="hero" id="home" {...storyblokEditable(blok)}>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    {blok.badge && <div class="hero-badge">{blok.badge}</div>}
+    <h1 set:html={blok.headline} />
+    <p class="hero-text">{blok.subline}</p>
+    <div class="hero-buttons">
+      <a href={blok.primary_cta_link?.cached_url || blok.primary_cta_link?.url || 'tel:+4916361975889'} class="btn btn-primary">
+        <span class="btn-icon">📞</span>
+        {blok.primary_cta_text || 'Jetzt anrufen'}
+      </a>
+      <a href={blok.secondary_cta_link?.cached_url || blok.secondary_cta_link?.url || '#leistungen'} class="btn btn-secondary">
+        {blok.secondary_cta_text || 'Unsere Leistungen'}
+      </a>
+    </div>
+    {trust.length > 0 && (
+      <div class="hero-trust">
+        {trust.map((item: any) => (
+          <div class="trust-item">
+            <span class="trust-icon">✓</span>
+            <span>{item.text}</span>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+  <div class="hero-scroll">
+    <a href="#leistungen" class="scroll-indicator">
+      <span>Mehr erfahren</span>
+      <div class="scroll-arrow"></div>
+    </a>
+  </div>
+</header>

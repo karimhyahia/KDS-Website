@@ -1,0 +1,19 @@
+{
+  "name": "kds-website",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@storyblok/astro": "^9.0.5",
+    "astro": "^6.2.2"
+  },
+  "devDependencies": {
+    "storyblok": "^4.17.2"
+  }
+}

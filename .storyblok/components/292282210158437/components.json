@@ -1,0 +1,204 @@
+[
+  {
+    "name": "page",
+    "display_name": "Page",
+    "is_root": true,
+    "is_nestable": false,
+    "schema": {
+      "seo_title": { "type": "text", "pos": 0, "display_name": "SEO Title" },
+      "seo_description": { "type": "textarea", "pos": 1, "display_name": "SEO Description" },
+      "body": {
+        "type": "bloks",
+        "pos": 2,
+        "display_name": "Page Sections",
+        "restrict_components": true,
+        "component_whitelist": ["hero", "services", "projects", "about", "cta_section", "contact"]
+      }
+    }
+  },
+  {
+    "name": "hero",
+    "display_name": "Hero",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "badge": { "type": "text", "pos": 0, "display_name": "Badge" },
+      "headline": { "type": "textarea", "pos": 1, "display_name": "Headline (HTML allowed)", "description": "Use <br> and <span class=\"highlight\">…</span> for emphasis." },
+      "subline": { "type": "textarea", "pos": 2, "display_name": "Subline" },
+      "primary_cta_text": { "type": "text", "pos": 3, "display_name": "Primary CTA Text" },
+      "primary_cta_link": { "type": "multilink", "pos": 4, "display_name": "Primary CTA Link" },
+      "secondary_cta_text": { "type": "text", "pos": 5, "display_name": "Secondary CTA Text" },
+      "secondary_cta_link": { "type": "multilink", "pos": 6, "display_name": "Secondary CTA Link" },
+      "trust_items": {
+        "type": "bloks",
+        "pos": 7,
+        "display_name": "Trust Items",
+        "restrict_components": true,
+        "component_whitelist": ["trust_item"]
+      }
+    }
+  },
+  {
+    "name": "trust_item",
+    "display_name": "Trust Item",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "text": { "type": "text", "pos": 0, "display_name": "Text" }
+    }
+  },
+  {
+    "name": "services",
+    "display_name": "Services Section",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "tag": { "type": "text", "pos": 0, "display_name": "Section Tag" },
+      "headline": { "type": "text", "pos": 1, "display_name": "Headline" },
+      "subline": { "type": "textarea", "pos": 2, "display_name": "Subline" },
+      "cards": {
+        "type": "bloks",
+        "pos": 3,
+        "display_name": "Service Cards",
+        "restrict_components": true,
+        "component_whitelist": ["service_card"]
+      }
+    }
+  },
+  {
+    "name": "service_card",
+    "display_name": "Service Card",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "icon": { "type": "text", "pos": 0, "display_name": "Icon (Emoji)" },
+      "title": { "type": "text", "pos": 1, "display_name": "Title" },
+      "description": { "type": "textarea", "pos": 2, "display_name": "Description" },
+      "variant": {
+        "type": "option",
+        "pos": 3,
+        "display_name": "Variant",
+        "options": [
+          { "name": "Default", "value": "default" },
+          { "name": "Featured", "value": "featured" },
+          { "name": "Emergency", "value": "emergency" }
+        ],
+        "default_value": "default"
+      },
+      "badge": { "type": "text", "pos": 4, "display_name": "Badge (only for Featured)" },
+      "cta_text": { "type": "text", "pos": 5, "display_name": "CTA Text (optional)" },
+      "cta_link": { "type": "multilink", "pos": 6, "display_name": "CTA Link" }
+    }
+  },
+  {
+    "name": "projects",
+    "display_name": "Projects Section",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "tag": { "type": "text", "pos": 0, "display_name": "Section Tag" },
+      "headline": { "type": "text", "pos": 1, "display_name": "Headline" },
+      "subline": { "type": "textarea", "pos": 2, "display_name": "Subline" },
+      "cards": {
+        "type": "bloks",
+        "pos": 3,
+        "display_name": "Project Cards",
+        "restrict_components": true,
+        "component_whitelist": ["project_card"]
+      }
+    }
+  },
+  {
+    "name": "project_card",
+    "display_name": "Project Card",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "image": { "type": "asset", "pos": 0, "display_name": "Image", "filetypes": ["images"] },
+      "title": { "type": "text", "pos": 1, "display_name": "Title" },
+      "subtitle": { "type": "text", "pos": 2, "display_name": "Subtitle" }
+    }
+  },
+  {
+    "name": "about",
+    "display_name": "About Section",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "tag": { "type": "text", "pos": 0, "display_name": "Section Tag" },
+      "headline": { "type": "text", "pos": 1, "display_name": "Headline" },
+      "lead": { "type": "textarea", "pos": 2, "display_name": "Lead Paragraph" },
+      "features": {
+        "type": "bloks",
+        "pos": 3,
+        "display_name": "Features",
+        "restrict_components": true,
+        "component_whitelist": ["about_feature"]
+      },
+      "cta_text": { "type": "text", "pos": 4, "display_name": "CTA Text" },
+      "cta_link": { "type": "multilink", "pos": 5, "display_name": "CTA Link" },
+      "visual_icon": { "type": "text", "pos": 6, "display_name": "Visual Icon (Emoji)" },
+      "visual_title": { "type": "text", "pos": 7, "display_name": "Visual Title" },
+      "visual_quote": { "type": "textarea", "pos": 8, "display_name": "Visual Quote" },
+      "visual_author": { "type": "text", "pos": 9, "display_name": "Visual Author" }
+    }
+  },
+  {
+    "name": "about_feature",
+    "display_name": "About Feature",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "icon": { "type": "text", "pos": 0, "display_name": "Icon (Emoji)" },
+      "title": { "type": "text", "pos": 1, "display_name": "Title" },
+      "description": { "type": "textarea", "pos": 2, "display_name": "Description" }
+    }
+  },
+  {
+    "name": "cta_section",
+    "display_name": "CTA Section",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "headline": { "type": "text", "pos": 0, "display_name": "Headline" },
+      "subline": { "type": "textarea", "pos": 1, "display_name": "Subline" },
+      "phone_number": { "type": "text", "pos": 2, "display_name": "Phone (international)" },
+      "phone_display": { "type": "text", "pos": 3, "display_name": "Phone Display" }
+    }
+  },
+  {
+    "name": "contact",
+    "display_name": "Contact Section",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "tag": { "type": "text", "pos": 0, "display_name": "Section Tag" },
+      "headline": { "type": "text", "pos": 1, "display_name": "Headline" },
+      "subline": { "type": "textarea", "pos": 2, "display_name": "Subline" },
+      "contact_name": { "type": "text", "pos": 3, "display_name": "Contact Name" },
+      "contact_role": { "type": "text", "pos": 4, "display_name": "Contact Role" },
+      "phone": { "type": "text", "pos": 5, "display_name": "Phone (international)" },
+      "phone_display": { "type": "text", "pos": 6, "display_name": "Phone Display" },
+      "phone_note": { "type": "text", "pos": 7, "display_name": "Phone Note" },
+      "address": { "type": "textarea", "pos": 8, "display_name": "Address (newlines = <br>)" },
+      "form_headline": { "type": "text", "pos": 9, "display_name": "Form Headline" },
+      "service_options": {
+        "type": "bloks",
+        "pos": 10,
+        "display_name": "Form Service Options",
+        "restrict_components": true,
+        "component_whitelist": ["service_option"]
+      }
+    }
+  },
+  {
+    "name": "service_option",
+    "display_name": "Service Option",
+    "is_root": false,
+    "is_nestable": true,
+    "schema": {
+      "label": { "type": "text", "pos": 0, "display_name": "Label" },
+      "value": { "type": "text", "pos": 1, "display_name": "Value" }
+    }
+  }
+]

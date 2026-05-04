@@ -1,0 +1,18 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+const { blok } = Astro.props;
+---
+<section class="cta-section" {...storyblokEditable(blok)}>
+  <div class="container">
+    <div class="cta-content">
+      <h2>{blok.headline}</h2>
+      <p>{blok.subline}</p>
+      <div class="cta-buttons">
+        <a href={`tel:${(blok.phone_number || '').replace(/[^+0-9]/g, '')}`} class="btn btn-light">
+          <span class="btn-icon">📞</span>
+          {blok.phone_display || blok.phone_number}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

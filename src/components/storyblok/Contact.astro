@@ -1,0 +1,74 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+const { blok } = Astro.props;
+const services = blok.service_options || [];
+---
+<section class="contact" id="kontakt" aria-labelledby="contact-heading" {...storyblokEditable(blok)}>
+  <div class="container">
+    <header class="section-header">
+      {blok.tag && <span class="section-tag">{blok.tag}</span>}
+      <h2 id="contact-heading">{blok.headline}</h2>
+      {blok.subline && <p>{blok.subline}</p>}
+    </header>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-card">
+          <div class="contact-icon">👤</div>
+          <h3>Ansprechpartner</h3>
+          <p class="contact-name">{blok.contact_name}</p>
+          <p>{blok.contact_role}</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">📞</div>
+          <h3>Telefon</h3>
+          <a href={`tel:${(blok.phone || '').replace(/[^+0-9]/g, '')}`} class="contact-link">{blok.phone_display || blok.phone}</a>
+          <p>{blok.phone_note}</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">📍</div>
+          <h3>Adresse</h3>
+          <p set:html={(blok.address || '').replace(/\n/g, '<br />')} />
+        </div>
+      </div>
+      <div class="contact-form-container">
+        <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hidden" style="display:none;">
+            <label>Nicht ausfüllen: <input name="bot-field" /></label>
+          </p>
+          <h3>{blok.form_headline || 'Schreiben Sie uns'}</h3>
+          <div class="form-group">
+            <label for="name">Name *</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">E-Mail</label>
+              <input type="email" id="email" name="email" />
+            </div>
+            <div class="form-group">
+              <label for="phone">Telefon *</label>
+              <input type="tel" id="phone" name="phone" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="service">Gewünschte Leistung</label>
+            <select id="service" name="service">
+              <option value="">Bitte wählen...</option>
+              {services.map((s: any) => <option value={s.value}>{s.label}</option>)}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Ihre Nachricht *</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+          </div>
+          <div class="form-group form-checkbox">
+            <input type="checkbox" id="privacy" name="privacy" required />
+            <label for="privacy">Ich habe die <a href="/datenschutz">Datenschutzerklärung</a> gelesen und akzeptiere diese. *</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">Nachricht senden</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

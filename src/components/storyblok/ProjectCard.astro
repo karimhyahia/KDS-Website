@@ -1,0 +1,13 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+const { blok } = Astro.props;
+const imgSrc = blok.image?.filename || '';
+const imgAlt = blok.image?.alt || blok.title || '';
+---
+<article class="project-card" {...storyblokEditable(blok)}>
+  <img src={imgSrc} alt={imgAlt} loading="lazy" width="600" height="400" />
+  <div class="project-overlay">
+    <h3>{blok.title}</h3>
+    <p>{blok.subtitle}</p>
+  </div>
+</article>

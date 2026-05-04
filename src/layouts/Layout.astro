@@ -1,0 +1,90 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = 'KDS Keller & Dach Spezialisten | Handwerker Reichelsheim | 24h Notdienst',
+  description = 'KDS - Ihr Handwerker in Reichelsheim (Odenwald). Dachsanierung, Kellerentfeuchtung, Fassadenarbeiten & 24h Notdienst. ☎ 0163-6197589. Kostenlose Beratung!',
+  canonical = 'https://kds-handwerk.de/',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="Handwerker Reichelsheim, Dachsanierung Odenwald, Kellerentfeuchtung, Fassadenarbeiten, Maler, 24h Notdienst, KDS, Gillmeister" />
+    <meta name="author" content="KDS - Keller & Dach Spezialisten" />
+    <meta name="robots" content="index, follow" />
+    <meta name="geo.region" content="DE-HE" />
+    <meta name="geo.placename" content="Reichelsheim" />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="KDS - Keller & Dach Spezialisten" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://kds-handwerk.de/images/logo.png" />
+    <meta property="og:url" content={canonical} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://kds-handwerk.de/images/logo.png" />
+
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <link rel="apple-touch-icon" href="/images/logo.png" />
+
+    <link rel="preload" href="/images/hero-dach.jpg" as="image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      '@id': 'https://kds-handwerk.de/#business',
+      name: 'KDS - Keller & Dach Spezialisten',
+      description: 'Qualifizierter Handwerksbetrieb für Dachsanierung, Kellerentfeuchtung, Fassadenarbeiten und 24h Notdienst in Reichelsheim und Umgebung.',
+      url: 'https://kds-handwerk.de/',
+      telephone: '+49-163-6197589',
+      image: 'https://kds-handwerk.de/images/logo.png',
+      logo: 'https://kds-handwerk.de/images/logo.png',
+      priceRange: '$$',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Panoramastr. 12',
+        addressLocality: 'Reichelsheim',
+        postalCode: '64385',
+        addressRegion: 'Hessen',
+        addressCountry: 'DE',
+      },
+      geo: { '@type': 'GeoCoordinates', latitude: '49.7142', longitude: '8.8378' },
+      openingHoursSpecification: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        opens: '00:00',
+        closes: '23:59',
+        description: '24h Notdienst verfügbar',
+      },
+      founder: { '@type': 'Person', name: 'Herr Gillmeister' },
+      areaServed: [
+        { '@type': 'City', name: 'Reichelsheim' },
+        { '@type': 'AdministrativeArea', name: 'Odenwald' },
+      ],
+    })} />
+  </head>
+  <body>
+    <slot />
+    <script src="/script.js" is:inline></script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+---
+import { useStoryblokApi } from '@storyblok/astro';
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const storyblokApi = useStoryblokApi();
+const { data } = await storyblokApi.get('cdn/stories/home', {
+  version: import.meta.env.DEV ? 'draft' : 'published',
+  resolve_links: 'url',
+});
+const story = data.story;
+---
+<Layout
+  title={story.content.seo_title || undefined}
+  description={story.content.seo_description || undefined}
+>
+  <Navbar />
+  <StoryblokComponent blok={story.content} />
+  <Footer />
+</Layout>
